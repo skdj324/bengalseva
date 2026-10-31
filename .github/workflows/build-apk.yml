@@ -22,12 +22,14 @@ jobs:
 
       - name: Build Android App & Compile APK
         run: |
-          # Use valid Java namespace com.bengalseva (replaces reserved keyword 'in')
+          # Create clean Android project with valid com.bengalseva package
           flutter create app_builder --org com.bengalseva --project-name bengalseva --platforms android
           cd app_builder
-          flutter pub add webview_flutter permission_handler connectivity_plus
+          
+          # Use official rock-solid webview plugin (Zero SDK 37 conflicts)
+          flutter pub add webview_flutter
 
-          # Auto-inject GPS, Camera, Mic permissions
+          # Inject permissions for GPS location, Mic & Network
           sed -i '/<application/i \    <uses-permission android:name="android.permission.INTERNET"/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>\n    <uses-permission android:name="android.permission.RECORD_AUDIO"/>\n    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-permission android:name="android.permission.VIBRATE"/>' android/app/src/main/AndroidManifest.xml
           sed -i 's/<application/<application android:usesCleartextTraffic="true"/' android/app/src/main/AndroidManifest.xml
 
@@ -36,10 +38,8 @@ jobs:
           import 'package:flutter/material.dart';
           import 'package:flutter/services.dart';
           import 'package:webview_flutter/webview_flutter.dart';
-          import 'package:permission_handler/permission_handler.dart';
-          import 'package:connectivity_plus/connectivity_plus.dart';
 
-          void main() async {
+          void main() {
             WidgetsFlutterBinding.ensureInitialized();
             SystemChrome.setSystemUIOverlayStyle(
               const SystemUiOverlayStyle(
@@ -88,27 +88,6 @@ jobs:
             @override
             void initState() {
               super.initState();
-              _requestAppPermissions();
-              _checkConnectivity();
-              _initWebViewController();
-            }
-
-            Future<void> _requestAppPermissions() async {
-              await [
-                Permission.location,
-                Permission.microphone,
-                Permission.camera,
-              ].request();
-            }
-
-            Future<void> _checkConnectivity() async {
-              final connectivityResult = await Connectivity().checkConnectivity();
-              if (connectivityResult == ConnectivityResult.none) {
-                setState(() => _isOffline = true);
-              }
-            }
-
-            void _initWebViewController() {
               _controller = WebViewController()
                 ..setJavaScriptMode(JavaScriptMode.unrestricted)
                 ..setBackgroundColor(const Color(0xFFF1F5F9))
@@ -116,7 +95,9 @@ jobs:
                 ..setNavigationDelegate(
                   NavigationDelegate(
                     onProgress: (int progress) {
-                      setState(() => _loadingProgress = progress);
+                      setState(() {
+                        _loadingProgress = progress;
+                      });
                     },
                     onPageStarted: (String url) {
                       setState(() {
@@ -125,7 +106,9 @@ jobs:
                       });
                     },
                     onPageFinished: (String url) {
-                      setState(() => _isLoading = false);
+                      setState(() {
+                        _isLoading = false;
+                      });
                     },
                     onWebResourceError: (WebResourceError error) {
                       if (error.isForMainFrame ?? true) {
@@ -195,13 +178,23 @@ jobs:
                   children: [
                     const Icon(Icons.wifi_off_rounded, size: 80, color: Color(0xFFFF6A00)),
                     const SizedBox(height: 20),
-                    const Text("No Internet Connection", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF0B2239))),
+                    const Text(
+                      "No Internet Connection",
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Color(0xFF0B2239)),
+                    ),
                     const SizedBox(height: 10),
-                    const Text("Please check your mobile data or Wi-Fi to continue using BengalSeva.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey, fontSize: 14)),
+                    const Text(
+                      "Please check your mobile data or Wi-Fi to continue using BengalSeva.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
+                    ),
                     const SizedBox(height: 30),
                     ElevatedButton.icon(
                       onPressed: () {
-                        setState(() { _isOffline = false; _isLoading = true; });
+                        setState(() {
+                          _isOffline = false;
+                          _isLoading = true;
+                        });
                         _controller.loadRequest(Uri.parse(appUrl));
                       },
                       icon: const Icon(Icons.refresh_rounded, color: Colors.white),
@@ -225,7 +218,13 @@ jobs:
                   content: const Text("Do you really want to close the app?"),
                   actions: [
                     TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text("Cancel")),
-                    TextButton(onPressed: () { Navigator.of(context).pop(); SystemNavigator.pop(); }, child: const Text("Exit", style: TextStyle(color: Colors.red))),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        SystemNavigator.pop();
+                      },
+                      child: const Text("Exit", style: TextStyle(color: Colors.red)),
+                    ),
                   ],
                 ),
               );
@@ -233,7 +232,7 @@ jobs:
           }
           EOF
 
-          # Build Production Release APK
+          # Build Production APK with Zero Gradle Conflict
           flutter build apk --release --no-tree-shake-icons
 
       - name: Upload Ready-to-Install APK

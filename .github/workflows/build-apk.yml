@@ -22,12 +22,12 @@ jobs:
 
       - name: Build Android App & Compile APK
         run: |
-          # Generate 100% Clean Modern Flutter Android v2 App
-          flutter create app_builder --org in.bengalseva --project-name bengalseva --platforms android
+          # Use valid Java namespace com.bengalseva (replaces reserved keyword 'in')
+          flutter create app_builder --org com.bengalseva --project-name bengalseva --platforms android
           cd app_builder
           flutter pub add webview_flutter permission_handler connectivity_plus
 
-          # Auto-inject GPS, Camera, Mic permissions into modern v2 manifest
+          # Auto-inject GPS, Camera, Mic permissions
           sed -i '/<application/i \    <uses-permission android:name="android.permission.INTERNET"/>\n    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>\n    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>\n    <uses-permission android:name="android.permission.RECORD_AUDIO"/>\n    <uses-permission android:name="android.permission.CAMERA"/>\n    <uses-permission android:name="android.permission.VIBRATE"/>' android/app/src/main/AndroidManifest.xml
           sed -i 's/<application/<application android:usesCleartextTraffic="true"/' android/app/src/main/AndroidManifest.xml
 
@@ -233,7 +233,7 @@ jobs:
           }
           EOF
 
-          # Build Production APK with Modern V2 Embedding
+          # Build Production Release APK
           flutter build apk --release --no-tree-shake-icons
 
       - name: Upload Ready-to-Install APK

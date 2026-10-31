@@ -1,0 +1,321 @@
+/* ==========================================================================
+   BengalSeva Theme - Clean Header & Zero-Jitter Scroll
+   ========================================================================== */
+
+:root {
+    --bs-primary: #0b5ed7;
+    --bs-primary-dark: #084298;
+    --bs-orange: #ff6a00;
+    --bs-dark-header: #071e36;
+    --bs-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    font-family: var(--bs-font-sans);
+    color: #1e293b;
+    background-color: #f1f5f9;
+    overflow-x: hidden;
+}
+
+/* Locked Zero-Jitter Sticky Header Wrapper */
+.site-header-sticky-wrapper {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1040 !important;
+    background: #ffffff !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+    will-change: transform !important;
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+}
+
+/* Top Utility Bar */
+.top-utility-bar {
+    background-color: var(--bs-dark-header);
+    color: #e2e8f0;
+    font-size: 0.8125rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-utility-bar a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.top-utility-bar a:hover {
+    color: #ffffff;
+}
+
+/* Main Navbar & Logo (Strictly Left Aligned, Zero Distortion) */
+.navbar-bengal {
+    background-color: #ffffff;
+    padding: 8px 0;
+}
+
+.brand-logo-container {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    height: 44px !important;
+    max-height: 44px !important;
+}
+
+.brand-official-logo {
+    height: 40px !important;
+    max-height: 40px !important;
+    width: auto !important;
+    max-width: 190px !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+.brand-title {
+    font-size: 1.55rem;
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+}
+
+.brand-title .bengal-part { color: #0d6efd; }
+.brand-title .seva-part { color: #ff6a00; }
+
+.brand-subtitle {
+    font-size: 0.68rem;
+    color: #64748b;
+    font-weight: 600;
+    display: block;
+    letter-spacing: 0.1px;
+}
+
+.navbar-bengal .nav-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #334155;
+    padding: 7px 13px !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.navbar-bengal .nav-link:hover {
+    color: #0d6efd;
+    background-color: #f8fafc;
+}
+
+.navbar-bengal .nav-link.active-pill {
+    background-color: #0d6efd;
+    color: #ffffff !important;
+}
+
+/* Hero Section */
+.hero-wrapper {
+    position: relative;
+    background: linear-gradient(180deg, rgba(2, 29, 61, 0.35) 0%, rgba(2, 29, 61, 0.65) 100%),
+                url('https://images.unsplash.com/photo-1558431382-27e303142255?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    border-bottom: 4px solid var(--bs-orange);
+}
+
+.hero-pill-badge {
+    display: inline-block;
+    background: #ffc107;
+    color: #1e293b;
+    font-weight: 800;
+    font-size: 0.825rem;
+    padding: 5px 14px;
+    border-radius: 50px;
+}
+
+.hero-headline {
+    color: #ffffff;
+    font-size: 2.6rem;
+    font-weight: 900;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    line-height: 1.15;
+}
+
+.proud-badge {
+    background: rgba(255, 255, 255, 0.95);
+    color: #0d6efd;
+    font-weight: 800;
+    padding: 9px 18px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.925rem;
+}
+
+.search-floating-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+}
+
+.search-floating-card select,
+.search-floating-card input {
+    border: none;
+    box-shadow: none !important;
+}
+
+.btn-search-main {
+    background: #0d6efd;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 9px 28px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* Category Grid Tiles (8 Colored Tiles) */
+.category-card-tile {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #ffffff;
+    padding: 16px 8px;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    border: 1px solid #e2e8f0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+}
+
+.category-card-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.tile-icon-box {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.65rem;
+    color: #ffffff;
+    margin-bottom: 9px;
+}
+
+.tile-icon-blue    { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.tile-icon-orange  { background: linear-gradient(135deg, #ea580c, #f97316); }
+.tile-icon-purple  { background: linear-gradient(135deg, #7c3aed, #a855f7); }
+.tile-icon-green   { background: linear-gradient(135deg, #15803d, #22c55e); }
+.tile-icon-red     { background: linear-gradient(135deg, #dc2626, #ef4444); }
+.tile-icon-cyan    { background: linear-gradient(135deg, #0284c7, #38bdf8); }
+.tile-icon-emerald { background: linear-gradient(135deg, #059669, #10b981); }
+.tile-icon-pink    { background: linear-gradient(135deg, #db2777, #ec4899); }
+
+.tile-title {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.25;
+}
+
+/* Popular Services & Promos */
+.service-vendor-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card-img-wrap {
+    height: 145px;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.verified-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 50px;
+}
+
+.service-vendor-body {
+    padding: 13px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.promo-purple-banner {
+    background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 100%);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.promo-green-banner {
+    background: linear-gradient(135deg, #14532d 0%, #16a34a 100%);
+    color: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.btn-yellow-cta {
+    background: #facc15;
+    color: #1e293b;
+    font-weight: 800;
+    font-size: 0.825rem;
+    padding: 7px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.trust-metrics-bar {
+    background: var(--bs-dark-header);
+    color: #ffffff;
+    padding: 18px 0;
+    border-top: 3px solid var(--bs-orange);
+}
+
+@media (max-width: 991.98px) {
+    .brand-official-logo { height: 34px !important; }
+    .hero-headline { font-size: 1.95rem; }
+}
+
+@media (max-width: 575.98px) {
+    .brand-official-logo { height: 30px !important; max-width: 130px !important; }
+    .hero-headline { font-size: 1.65rem; }
+}
+
+/* Strict Desktop Enforcement: Never show mobile bottom bar on desktop */
+@media (min-width: 992px) {
+    .mobile-bottom-bar-container {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+}

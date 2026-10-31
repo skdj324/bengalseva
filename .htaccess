@@ -1,0 +1,17 @@
+# BengalSeva - Apache/LiteSpeed Configuration
+Options -Indexes
+ServerSignature Off
+
+# Prevent directory browsing
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Protect config files
+<FilesMatch "\.(sql|log|env|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enforce UTF-8 Default
+AddDefaultCharset UTF-8

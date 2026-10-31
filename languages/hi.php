@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+
+return [
+    'app_name'           => 'बंगालसेवा',
+    'tagline'            => 'पश्चिम बंगाल का प्रमुख सेवा एवं व्यापार मंच',
+    'home'               => 'होम',
+    'categories'         => 'श्रेणियाँ',
+    'select_district'    => 'जिला चुनें',
+    'all_districts'      => 'पश्चिम बंगाल के सभी जिले',
+    'search_placeholder' => 'आप किस सेवा या उत्पाद की तलाश कर रहे हैं?',
+    'search_btn'         => 'खोजें',
+    'login'              => 'लॉग इन',
+    'logout'             => 'लॉग आउट',
+    'portal'             => 'पोर्टल',
+    'register_vendor'    => 'पार्टनर के रूप में जुड़ें',
+    'submit_requirement' => 'ज़रूरत दर्ज करें',
+    'featured_services'  => 'प्रमुख सेवाएँ',
+    'lead_generated_msg' => 'आपका अनुरोध प्राप्त हो गया है। स्थानीय सेवा प्रदाता जल्द संपर्क करेंगे।',
+    'email_address'      => 'ईमेल पता',
+    'password'           => 'पासवर्ड',
+    'login_btn'          => 'सुरक्षित लॉग इन',
+    'invalid_creds'      => 'गलत ईमेल या पासवर्ड।',
+    'unauthorized'       => 'आपको इस भाग को देखने की अनुमति नहीं है।',
+    'role'               => 'निर्धारित पद',
+    'status'             => 'स्थिति',
+    'dashboard'          => 'डैशबोर्ड',
+    'recent_audits'      => 'हालिया सिस्टम गतिविधि',
+    'quick_stats'        => 'मार्केटप्लेस सारांश',
+];

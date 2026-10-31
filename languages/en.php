@@ -1,0 +1,30 @@
+<?php
+declare(strict_types=1);
+
+return [
+    'app_name'           => 'BengalSeva',
+    'tagline'            => 'West Bengal\'s Leading Digital Marketplace & Services',
+    'home'               => 'Home',
+    'categories'         => 'Categories',
+    'select_district'    => 'Select District',
+    'all_districts'      => 'All West Bengal Districts',
+    'search_placeholder' => 'What service or product are you searching for?',
+    'search_btn'         => 'Search Now',
+    'login'              => 'Login',
+    'logout'             => 'Logout',
+    'portal'             => 'Portal',
+    'register_vendor'    => 'Register as Partner',
+    'submit_requirement' => 'Post Requirement',
+    'featured_services'  => 'Featured Services',
+    'lead_generated_msg' => 'Your request has been received. Local providers will contact you shortly.',
+    'email_address'      => 'Email Address',
+    'password'           => 'Password',
+    'login_btn'          => 'Sign In Securely',
+    'invalid_creds'      => 'Invalid email or password.',
+    'unauthorized'       => 'You do not have permission to view this section.',
+    'role'               => 'Assigned Role',
+    'status'             => 'Status',
+    'dashboard'          => 'Dashboard',
+    'recent_audits'      => 'Recent System Activity',
+    'quick_stats'        => 'Marketplace Overview',
+];

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /portal/
+Disallow: /backups/
+Disallow: /config/
+Disallow: /includes/
+
+Sitemap: https://searchkaro.midexa.in/sitemap.php
